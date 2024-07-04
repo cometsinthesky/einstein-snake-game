@@ -19,16 +19,16 @@ document.getElementById('restartBtn').addEventListener('click', restartGame);
 
 function changeDirection(event) {
     const keyPressed = event.keyCode;
-    if (keyPressed === 37 && direction !== 'RIGHT') {
+    if ((keyPressed === 37 || keyPressed === 65 || keyPressed === 97) && direction !== 'RIGHT') { // 37 é a tecla esquerda, 65 é a tecla 'A', 97 é a tecla 'a'
         direction = 'LEFT';
         event.preventDefault();
-    } else if (keyPressed === 38 && direction !== 'DOWN') {
+    } else if ((keyPressed === 38 || keyPressed === 87 || keyPressed === 119) && direction !== 'DOWN') { // 38 é a tecla para cima, 87 é a tecla 'W', 119 é a tecla 'w'
         direction = 'UP';
         event.preventDefault();
-    } else if (keyPressed === 39 && direction !== 'LEFT') {
+    } else if ((keyPressed === 39 || keyPressed === 68 || keyPressed === 100) && direction !== 'LEFT') { // 39 é a tecla direita, 68 é a tecla 'D', 100 é a tecla 'd'
         direction = 'RIGHT';
         event.preventDefault();
-    } else if (keyPressed === 40 && direction !== 'UP') {
+    } else if ((keyPressed === 40 || keyPressed === 83 || keyPressed === 115) && direction !== 'UP') { // 40 é a tecla para baixo, 83 é a tecla 'S', 115 é a tecla 's'
         direction = 'DOWN';
         event.preventDefault();
     } else if (keyPressed === 32) { // Space key to pause/unpause
@@ -37,7 +37,7 @@ function changeDirection(event) {
     }
 }
 
-const limitScore = 30;
+const limitScore = 20;
 
 function draw(currentTime) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -60,7 +60,7 @@ function draw(currentTime) {
 // Show pause message
 if (isPaused) {
     const message1 = 'Pressione a barra de espaço para jogar!';
-    const message2 = 'Use as setas para controlar a cobra.';
+    const message2 = 'Use as setas ou as teclas "W" "A" "S" "D" para controlar a cobra.';
     ctx.fillStyle = '#FF1B00';
     ctx.font = '16px Roboto';
     
@@ -81,9 +81,9 @@ if (isPaused) {
             lastTime = currentTime;
 
             // Update updateTime based on score
-            if (score >= 100) {
+            if (score >= 50) {
                 updateTime = 40;
-            } else if (score >= 30) {
+            } else if (score >= 20) {
                 updateTime = 50;
             } else if (score >= 10) {
                 updateTime = 60;
