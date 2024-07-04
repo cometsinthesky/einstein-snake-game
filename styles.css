@@ -1,0 +1,54 @@
+body {
+    height: 100vh;
+    margin: 20px;
+    background-color: #000;
+    color: #f0f0f0;
+    font-family: 'Roboto', sans-serif;
+    background-image: url("./images/starbackground.jpg");
+    background-repeat:no-repeat;
+    background-size: cover;
+}
+
+.title {
+    width: 100%;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#gameCanvas {
+    opacity: 95%;
+    margin-top:0px;
+    border: 1px solid #f0f0f0;
+    background-color: #111;
+}
+
+.info {
+    margin-top: 20px;
+}
+
+#scoreBox {
+    position: absolute;
+    top: 270px;
+    left: 120px;
+    margin-bottom: 10px;
+    font-size:24px;
+}
+
+button {
+    opacity: 95%;
+    position: absolute;
+    top: 310px;
+    left: 120px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #23cf2c;
+    color: #f0f0f0;
+    border: none;
+}
