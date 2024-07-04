@@ -9,7 +9,7 @@ let direction = 'RIGHT';
 let food = { x: Math.floor(Math.random() * (canvas.width / box)) * box, y: Math.floor(Math.random() * (canvas.height / box)) * box };
 let score = 0;
 let canCrossWalls = false;
-let isPaused = false;
+let isPaused = true; // Initially paused
 
 let lastTime = 0;
 let updateTime = 80;
@@ -21,19 +21,23 @@ function changeDirection(event) {
     const keyPressed = event.keyCode;
     if (keyPressed === 37 && direction !== 'RIGHT') {
         direction = 'LEFT';
+        event.preventDefault();
     } else if (keyPressed === 38 && direction !== 'DOWN') {
         direction = 'UP';
+        event.preventDefault();
     } else if (keyPressed === 39 && direction !== 'LEFT') {
         direction = 'RIGHT';
+        event.preventDefault();
     } else if (keyPressed === 40 && direction !== 'UP') {
         direction = 'DOWN';
-    } else if (keyPressed === 32) {
+        event.preventDefault();
+    } else if (keyPressed === 32) { // Space key to pause/unpause
         event.preventDefault();
         isPaused = !isPaused;
     }
 }
 
-const limitScore = 3;
+const limitScore = 30;
 
 function draw(currentTime) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -50,9 +54,40 @@ function draw(currentTime) {
     ctx.fillStyle = 'yellow';
     ctx.fillRect(food.x, food.y, box, box);
 
+    // Change canvas border color based on score
+    canvas.style.border = score >= limitScore ? '1px solid #0074FF' : '1px solid #FF1B00';
+
+// Show pause message
+if (isPaused) {
+    const message1 = 'Pressione a barra de espaço para jogar!';
+    const message2 = 'Use as setas para controlar a cobra.';
+    ctx.fillStyle = '#FF1B00';
+    ctx.font = '16px Roboto';
+    
+    // Medir largura de cada mensagem
+    const textWidth1 = ctx.measureText(message1).width;
+    const textWidth2 = ctx.measureText(message2).width;
+    
+    // Calcular a largura total considerando a maior largura
+    const maxWidth = Math.max(textWidth1, textWidth2);
+    
+    // Desenhar as mensagens centralizadas verticalmente
+    ctx.fillText(message1, (canvas.width - maxWidth) / 2, canvas.height - 30);
+    ctx.fillText(message2, (canvas.width - maxWidth) / 2, canvas.height - 10);
+}
+
     if (!isPaused) {
         if (currentTime - lastTime > updateTime) {
             lastTime = currentTime;
+
+            // Update updateTime based on score
+            if (score >= 100) {
+                updateTime = 40;
+            } else if (score >= 30) {
+                updateTime = 50;
+            } else if (score >= 10) {
+                updateTime = 60;
+            }
 
             // Old head position
             let snakeX = snake[0].x;
@@ -129,8 +164,9 @@ function restartGame() {
     food = { x: Math.floor(Math.random() * (canvas.width / box)) * box, y: Math.floor(Math.random() * (canvas.height / box)) * box };
     score = 0;
     canCrossWalls = false;
-    isPaused = false;
+    isPaused = true; // Restart game in paused state
     lastTime = 0;
+    updateTime = 80; // Reset updateTime
     requestAnimationFrame(draw);
 }
 
