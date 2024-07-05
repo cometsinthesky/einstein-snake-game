@@ -60,7 +60,7 @@ function draw(currentTime) {
 // Show pause message
 if (isPaused) {
     const message1 = 'Pressione a barra de espaço para jogar!';
-    const message2 = 'Use as setas ou as teclas "W" "A" "S" "D" para controlar a cobra.';
+    const message2 = 'Use as setas ou as teclas W-A-S-D para controlar a espaçonave.';
     ctx.fillStyle = '#FF1B00';
     ctx.font = '16px Roboto';
     
@@ -82,12 +82,42 @@ if (isPaused) {
 
             // Update updateTime based on score
             if (score >= 50) {
+                updateTime = 30;
+                message = "Chegamos no limite do Universo Observável! Agora dê o seu melhor! 🌌";
+            } else if (score >= 45) {
                 updateTime = 40;
-            } else if (score >= 20) {
+                message = "Executando manobra evasiva! Ufa, essa foi por pouco! 🚀";
+            } else if (score >= 40) {
+                updateTime = 40;
+                message = "Cuidado!!! Estamos nos aproximando de um Buraco Negro! 🕳️";
+            } else if (score >= 35) {
                 updateTime = 50;
+                message = "Medindo os efeitos da Relatividade, aguente firme! ⌚🛰️📡";
+            } else if (score >= 30) {
+                updateTime = 50;
+                message = "Uau! Estamos viajando na Velocidade da Luz! 🚀💡";
+            } else if (score >= 25) {
+                updateTime = 60;
+                message = "Se aproximando da Velocidade da Luz... ⏩";
+            } else if (score >= 20) {
+                updateTime = 60;
+                message = "Entramos no Buraco de Minhoca!!! Agora você pode atravessar o Espaço-Tempo! 🌐";
+            } else if (score >= 15) {
+                updateTime = 60;
+                message = "Se prepare! Vamos entrar em um Buraco de Minhoca! 🌐";
             } else if (score >= 10) {
                 updateTime = 60;
+                message = "Estamos entrando em Espaço Interestelar 🚀🌌";
+            } else if (score >= 5) {
+                updateTime = 80;
+                message = "Aquecendo os motores... 🔥";
+            } else {
+                updateTime = 80;
+                message = "Ajude o Einstein a capturar os fótons! 💡";
             }
+
+            // Display the message
+            document.getElementById('messageDisplay').innerText = message;
 
             // Old head position
             let snakeX = snake[0].x;
@@ -130,12 +160,12 @@ if (isPaused) {
 
             // Game over
             if (!canCrossWalls && (snakeX < 0 || snakeY < 0 || snakeX >= canvas.width || snakeY >= canvas.height || collision(newHead, snake))) {
-                alert("☠️ Game Over! Your score: " + score);
+                alert("☠️ Game Over! Seu score: " + score);
                 return;
             }
 
             if (collision(newHead, snake)) {
-                alert("☠️ Game Over! Your score: " + score);
+                alert("☠️ Game Over! Seu score: " + score);
                 return;
             }
 
@@ -144,7 +174,7 @@ if (isPaused) {
     }
 
     // Display score
-    document.getElementById('scoreBox').innerText = 'Score: ' + score;
+    document.getElementById('scoreBox').innerText = 'Fótons: ' + score;
 
     requestAnimationFrame(draw);
 }
