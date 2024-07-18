@@ -1,4 +1,3 @@
-```markdown
 # Einstein Snake Game
 
 🚀 **Apresento o Einstein Snake Game!** 🌌
@@ -50,4 +49,3 @@ Você pode controlar a nave usando as teclas direcionais ou as teclas **WASD**:
 ## Conclusão
 
 Esperamos que todos aproveitem essa jornada incrível pelo Cosmos, aprendendo e se divertindo com o **Einstein Snake Game**. Se você é um educador em busca de novas ferramentas para engajar seus alunos, ou um entusiasta dos jogos clássicos, este projeto é para você. Vamos juntos explorar os mistérios do Universo, pixel a pixel! 🚀🌌🕹️
-```
