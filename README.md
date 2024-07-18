@@ -40,7 +40,7 @@ Você pode controlar a nave usando as teclas direcionais ou as teclas **WASD**:
 
 ## Experimente o Jogo
 
-🔗 Experimente o jogo aqui: [Einstein Snake Game](https://cometsinthesky.github.io/einstein-snake-game/)
+#🔗 Experimente o jogo aqui: [Einstein Snake Game](https://cometsinthesky.github.io/einstein-snake-game/)
 
 ## Código Fonte
 
