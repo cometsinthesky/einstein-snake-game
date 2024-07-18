@@ -61,12 +61,14 @@ function draw(currentTime) {
 if (isPaused) {
     const message1 = 'Pressione a barra de espaço para jogar!';
     const message2 = 'Use as setas ou as teclas W-A-S-D para controlar a espaçonave.';
+    const message3  = 'Pressione F11 para jogar em tela cheia.'
     ctx.fillStyle = '#FF1B00';
     ctx.font = '16px Roboto';
     
     // Medir largura de cada mensagem
     const textWidth1 = ctx.measureText(message1).width;
     const textWidth2 = ctx.measureText(message2).width;
+    const textWidth2 = ctx.measureText(message3).width;
     
     // Calcular a largura total considerando a maior largura
     const maxWidth = Math.max(textWidth1, textWidth2);
@@ -74,6 +76,7 @@ if (isPaused) {
     // Desenhar as mensagens centralizadas verticalmente
     ctx.fillText(message1, (canvas.width - maxWidth) / 2, canvas.height - 30);
     ctx.fillText(message2, (canvas.width - maxWidth) / 2, canvas.height - 10);
+    ctx.fillText(message3, (canvas.width - maxWidth) / 2, canvas.height - 10);
 }
 
     if (!isPaused) {
