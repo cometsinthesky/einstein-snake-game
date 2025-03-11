@@ -74,3 +74,34 @@ footer {
     font-size: 24px;
     margin-top: 50px;
 }
+
+.language-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.lang-btn {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #ff1b00;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.lang-btn:hover {
+    background-color: #cc1600;
+}

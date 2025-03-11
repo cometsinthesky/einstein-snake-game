@@ -19,16 +19,16 @@ document.getElementById('restartBtn').addEventListener('click', restartGame);
 
 function changeDirection(event) {
     const keyPressed = event.keyCode;
-    if ((keyPressed === 37 || keyPressed === 65 || keyPressed === 97) && direction !== 'RIGHT') { // 37 é a tecla esquerda, 65 é a tecla 'A', 97 é a tecla 'a'
+    if ((keyPressed === 37 || keyPressed === 65 || keyPressed === 97) && direction !== 'RIGHT') { // 37 is the left arrow key, 65 is 'A', 97 is 'a'
         direction = 'LEFT';
         event.preventDefault();
-    } else if ((keyPressed === 38 || keyPressed === 87 || keyPressed === 119) && direction !== 'DOWN') { // 38 é a tecla para cima, 87 é a tecla 'W', 119 é a tecla 'w'
+    } else if ((keyPressed === 38 || keyPressed === 87 || keyPressed === 119) && direction !== 'DOWN') { // 38 is the up arrow key, 87 is 'W', 119 is 'w'
         direction = 'UP';
         event.preventDefault();
-    } else if ((keyPressed === 39 || keyPressed === 68 || keyPressed === 100) && direction !== 'LEFT') { // 39 é a tecla direita, 68 é a tecla 'D', 100 é a tecla 'd'
+    } else if ((keyPressed === 39 || keyPressed === 68 || keyPressed === 100) && direction !== 'LEFT') { // 39 is the right arrow key, 68 is 'D', 100 is 'd'
         direction = 'RIGHT';
         event.preventDefault();
-    } else if ((keyPressed === 40 || keyPressed === 83 || keyPressed === 115) && direction !== 'UP') { // 40 é a tecla para baixo, 83 é a tecla 'S', 115 é a tecla 's'
+    } else if ((keyPressed === 40 || keyPressed === 83 || keyPressed === 115) && direction !== 'UP') { // 40 is the down arrow key, 83 is 'S', 115 is 's'
         direction = 'DOWN';
         event.preventDefault();
     } else if (keyPressed === 32) { // Space key to pause/unpause
@@ -59,21 +59,21 @@ function draw(currentTime) {
 
 // Show pause message
 if (isPaused) {
-    const message1 = '◈ Pressione a barra de espaço para jogar ou pausar';
-    const message2 = '◈ Use as setas ou as teclas W-A-S-D para controlar a espaçonave';
-    const message3  = '◈ Pressione a tecla F11 para jogar em tela cheia'
+    const message1 = '◈ Press the space bar to play or pause';
+    const message2 = '◈ Use the arrow keys or W-A-S-D to control the spaceship';
+    const message3  = '◈ Press F11 to play in fullscreen mode'
     ctx.fillStyle = '#FF1B00';
     ctx.font = '16px Roboto';
     
-    // Medir largura de cada mensagem
+    // Measure width of each message
     const textWidth1 = ctx.measureText(message1).width;
     const textWidth2 = ctx.measureText(message2).width;
     const textWidth3 = ctx.measureText(message3).width;
     
-    // Calcular a largura total considerando a maior largura
+    // Calculate the total width considering the largest width
     const maxWidth = Math.max(textWidth1, textWidth2);
     
-    // Desenhar as mensagens centralizadas verticalmente
+    // Draw messages centered vertically
     ctx.fillText(message1, (canvas.width - maxWidth) / 2, canvas.height - 50);
     ctx.fillText(message2, (canvas.width - maxWidth) / 2, canvas.height - 30);
     ctx.fillText(message3, (canvas.width - maxWidth) / 2, canvas.height - 10);
@@ -86,37 +86,37 @@ if (isPaused) {
             // Update updateTime based on score
             if (score >= 50) {
                 updateTime = 30;
-                message = "Chegamos no limite do Universo Observável! Agora dê o seu melhor! 🌌";
+                message = "We've reached the edge of the Observable Universe! Now do your best! 🌌";
             } else if (score >= 45) {
                 updateTime = 40;
-                message = "Executando manobra evasiva! Ufa, essa foi por pouco! 🚀";
+                message = "Executing evasive maneuver! Phew, that was close! 🚀";
             } else if (score >= 40) {
                 updateTime = 40;
-                message = "Cuidado!!! Estamos nos aproximando de um Buraco Negro! 🕳️";
+                message = "Watch out!!! We're approaching a Black Hole! 🕳️";
             } else if (score >= 35) {
                 updateTime = 50;
-                message = "Medindo os efeitos da Relatividade, aguente firme! ⌚🛰️📡";
+                message = "Measuring Relativity effects, hold on tight! ⌚🛰️📡";
             } else if (score >= 30) {
                 updateTime = 50;
-                message = "Uau! Estamos viajando na Velocidade da Luz! 🚀💡";
+                message = "Wow! We're traveling at the Speed of Light! 🚀💡";
             } else if (score >= 25) {
                 updateTime = 60;
-                message = "Se aproximando da Velocidade da Luz... ⏩";
+                message = "Approaching the Speed of Light... ⏩";
             } else if (score >= 20) {
                 updateTime = 60;
-                message = "Entramos no Buraco de Minhoca!!! Agora você pode atravessar o Espaço-Tempo! 🌐";
+                message = "We've entered the Wormhole!!! Now you can cross Space-Time! 🌐";
             } else if (score >= 15) {
                 updateTime = 60;
-                message = "Se prepare! Vamos entrar em um Buraco de Minhoca! 🌐";
+                message = "Get ready! We're about to enter a Wormhole! 🌐";
             } else if (score >= 10) {
                 updateTime = 60;
-                message = "Estamos entrando em Espaço Interestelar 🚀🌌";
+                message = "We're entering Interstellar Space 🚀🌌";
             } else if (score >= 5) {
                 updateTime = 80;
-                message = "Aquecendo os motores... 🔥";
+                message = "Warming up the engines... 🔥";
             } else {
                 updateTime = 80;
-                message = "Ajude o Einstein a capturar os fótons! 💡";
+                message = "Help Einstein capture the photons! 💡";
             }
 
             // Display the message
@@ -126,7 +126,7 @@ if (isPaused) {
             let snakeX = snake[0].x;
             let snakeY = snake[0].y;
 
-            // Which direction
+            // Determine direction
             if (direction === 'LEFT') snakeX -= box;
             if (direction === 'UP') snakeY -= box;
             if (direction === 'RIGHT') snakeX += box;
@@ -163,12 +163,12 @@ if (isPaused) {
 
             // Game over
             if (!canCrossWalls && (snakeX < 0 || snakeY < 0 || snakeX >= canvas.width || snakeY >= canvas.height || collision(newHead, snake))) {
-                alert("☠️ Game Over! Seu score: " + score);
+                alert("☠️ Game Over! Your score: " + score);
                 return;
             }
 
             if (collision(newHead, snake)) {
-                alert("☠️ Game Over! Seu score: " + score);
+                alert("☠️ Game Over! Your score: " + score);
                 return;
             }
 
@@ -177,7 +177,7 @@ if (isPaused) {
     }
 
     // Display score
-    document.getElementById('scoreBox').innerText = 'Fótons: ' + score;
+    document.getElementById('scoreBox').innerText = 'Photons: ' + score;
 
     requestAnimationFrame(draw);
 }
