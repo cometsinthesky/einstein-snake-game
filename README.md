@@ -2,7 +2,7 @@
 
 **Apresento o Einstein Snake Game!**
 
-Estou entusiasmado em compartilhar o meu novo projeto: um jogo retrô com uma temática espacial e científica!
+Um jogo retrô com uma temática espacial e científica!
 
 Neste jogo, você controla uma espaçonave pilotada por ninguém menos que Albert Einstein. O objetivo? Capturar fótons, representados por quadrados amarelos 🟨, para acumular pontos.
 
