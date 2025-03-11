@@ -84,24 +84,42 @@ footer {
 }
 
 h1 {
-    font-size: 24px;
+    font-size: 32px;
     margin-bottom: 20px;
+    color: #f0f0f0;
 }
 
 .buttons {
+    opacity: 95%;
     display: flex;
-    gap: 20px;
+    gap: 60px;
 }
 
-.lang-btn {
-    padding: 10px 20px;
-    font-size: 18px;
-    background-color: #ff1b00;
-    color: white;
+.lang-btn-pt {
+    background-image: url('images/pt.png');
+    background-size: 110%;
+    background-position: center;
+    padding: 16px 25px;
+    font-size: 30px;
+    background-color: #e71700;
+    color: #ffffff;
     text-decoration: none;
     border-radius: 5px;
+    overflow: hidden;
+}
+
+.lang-btn-en {
+    background-image: url('images/en.png');
+    background-size: cover;
+    padding: 16px 25px;
+    font-size: 30px;
+    background-color: #e71700;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+    overflow: hidden;
 }
 
 .lang-btn:hover {
-    background-color: #cc1600;
+    background-color: #ca1600;
 }
