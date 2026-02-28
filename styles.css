@@ -18,7 +18,7 @@ body {
 }
 
 .game-page {
-    max-width: 1200px;
+    max-width: 100%;
     margin: 0 auto;
     height: calc(100vh - 24px);
     display: flex;
@@ -38,6 +38,13 @@ body {
     margin: 8px 0 12px;
 }
 
+.title-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -46,7 +53,7 @@ body {
 }
 
 #gameCanvas {
-    width: min(88vw, 860px);
+    width: calc(100vw - 20px);
     border: 1px solid #f0f0f0;
     background-color: #111;
     opacity: 0.95;
@@ -55,7 +62,7 @@ body {
 }
 
 .info {
-    width: min(88vw, 860px);
+    width: calc(100vw - 20px);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -118,7 +125,7 @@ body {
 }
 
 #messageDisplay {
-    width: min(88vw, 860px);
+    width: calc(100vw - 20px);
     font-size: clamp(18px, 2.3vw, 24px);
     text-align: center;
     display: flex;
@@ -158,6 +165,17 @@ h1 {
     font-size: clamp(26px, 4vw, 36px);
     margin: 0;
     color: #f0f0f0;
+}
+
+.language-title,
+.language-subtitle {
+    text-align: center;
+}
+
+.language-subtitle {
+    font-size: clamp(24px, 3.2vw, 32px);
+    font-family: "Orbitron", sans-serif;
+    margin: 0 0 20px;
 }
 
 .buttons {
@@ -204,14 +222,10 @@ h1 {
         display: flex;
     }
 
-    #gameCanvas {
-        width: min(92vw, 432px);
-    }
-
     .info,
     .touch-controls,
     #messageDisplay {
-        width: min(92vw, 540px);
+        width: calc(100vw - 20px);
     }
 
     .touch-controls {
@@ -236,5 +250,17 @@ h1 {
 
     .info {
         margin-bottom: 0;
+    }
+
+    .buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .language-title,
+    .language-subtitle {
+        margin-left: auto;
+        margin-right: auto;
     }
 }

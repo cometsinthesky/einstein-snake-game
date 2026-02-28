@@ -53,8 +53,6 @@ function randomFoodPosition() {
 
 function applyCanvasSettings() {
     const mobileOrTablet = window.matchMedia('(max-width: 1024px)').matches;
-    const widthLimit = mobileOrTablet ? window.innerWidth * 0.92 : Math.min(window.innerWidth * 0.88, 860);
-    const heightLimit = mobileOrTablet ? window.innerHeight * 0.6 : window.innerHeight * 0.62;
 
     if (mobileOrTablet) {
         columns = 18;
@@ -63,6 +61,9 @@ function applyCanvasSettings() {
         columns = 23;
         rows = 40;
     }
+
+    const widthLimit = Math.max(window.innerWidth - 20, columns * box);
+    const heightLimit = mobileOrTablet ? window.innerHeight * 0.6 : window.innerHeight * 0.86;
 
     canvas.width = columns * box;
     canvas.height = rows * box;
