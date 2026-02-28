@@ -170,6 +170,7 @@ h1 {
 .language-title,
 .language-subtitle {
     text-align: center;
+    font-family: "Orbitron", sans-serif;
 }
 
 .language-subtitle {
@@ -192,6 +193,7 @@ h1 {
     font-size: 30px;
     background-color: #000000;
     color: #ffffff;
+    font-family: "Orbitron", sans-serif;
     text-decoration: none;
     border-radius: 5px;
     overflow: hidden;
@@ -204,6 +206,7 @@ h1 {
     font-size: 30px;
     background-color: #000000;
     color: #ffffff;
+    font-family: "Orbitron", sans-serif;
     text-decoration: none;
     border-radius: 5px;
     overflow: hidden;

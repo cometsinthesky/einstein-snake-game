@@ -53,6 +53,8 @@ function randomFoodPosition() {
 
 function applyCanvasSettings() {
     const mobileOrTablet = window.matchMedia('(max-width: 1024px)').matches;
+    const targetWidthRatio = mobileOrTablet ? 0.96 : 0.70;
+    const targetHeightRatio = mobileOrTablet ? 0.65 : 0.50;
 
     if (mobileOrTablet) {
         columns = 18;
@@ -62,15 +64,18 @@ function applyCanvasSettings() {
         rows = 40;
     }
 
-    const widthLimit = Math.max(window.innerWidth - 20, columns * box);
-    const heightLimit = mobileOrTablet ? window.innerHeight * 0.6 : window.innerHeight * 0.86;
+    const widthLimit = window.innerWidth * targetWidthRatio;
+    const heightLimit = window.innerHeight * targetHeightRatio;
 
     canvas.width = columns * box;
     canvas.height = rows * box;
 
-    const cellInPixels = Math.floor(Math.min(widthLimit / columns, heightLimit / rows));
-    canvas.style.width = `${cellInPixels * columns}px`;
-    canvas.style.height = `${cellInPixels * rows}px`;
+    const gridWidth = columns * box;
+    const gridHeight = rows * box;
+    const scale = Math.min(widthLimit / gridWidth, heightLimit / gridHeight);
+
+    canvas.style.width = `${gridWidth * scale}px`;
+    canvas.style.height = `${gridHeight * scale}px`;
 }
 
 function isMobileOrTabletTouch(event) {
