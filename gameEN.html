@@ -12,24 +12,38 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
 </head>
-<body>   
-    <div class="title" style="margin-top: 20px;">
-        <h1>Einstein Snake</h1>
-        <img src="./images/einstein-logo.png" alt="Einstein Logo" height="50px" style="margin-top: -10px;">
-    </div>
-
-    <div class="container">
-        <canvas id="gameCanvas" width="800" height="500"></canvas>
-        <div class="info">
-            <div id="scoreBox">Photons: 0</div>
-            <button id="restartBtn">Restart</button>
+<body>
+    <main class="game-page">
+        <div class="title">
+            <h1>Einstein Snake</h1>
+            <img src="./images/einstein-logo.png" alt="Einstein Logo" height="50">
         </div>
-    </div>
 
-    <div id="messageDisplay" style="font-size: 24px; text-align: center; display: flex; align-items: center; justify-content: center; margin-top: 40px;">Help Einstein capture the photons! 💡</div>
+        <div class="container">
+            <div class="info">
+                <div id="scoreBox">Photons: 0</div>
+                <button id="restartBtn">Restart</button>
+            </div>
+
+            <canvas id="gameCanvas" width="540" height="960"></canvas>
+
+            <div class="touch-controls" aria-label="Touch controls">
+                <div class="control-group left-group">
+                    <button class="control-btn" data-direction="LEFT" aria-label="Move left">←</button>
+                    <button class="control-btn" data-direction="UP" aria-label="Move up">↑</button>
+                </div>
+                <div class="control-group right-group">
+                    <button class="control-btn" data-direction="DOWN" aria-label="Move down">↓</button>
+                    <button class="control-btn" data-direction="RIGHT" aria-label="Move right">→</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="messageDisplay">Tap the game to start and help Einstein capture the photons! 💡</div>
+    </main>
 
     <footer>Created by Lucas Ferreira (UnB/MNPEF) - CC BY-NC-ND 4.0</footer>
-    
+
     <script src="functionsEN.js"></script>
 
 </body>

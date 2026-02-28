@@ -1,13 +1,19 @@
 body {
-    height: 100vh;
-    margin: 20px;
+    min-height: 100vh;
+    margin: 0;
+    padding: 10px 10px 22px;
+    box-sizing: border-box;
     background-color: #000;
     color: #f0f0f0;
     font-family: 'Roboto', sans-serif;
     background-image: url("./images/starbackground.jpg");
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     background-size: cover;
-    overflow: hidden;
+}
+
+.game-page {
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .title {
@@ -16,49 +22,102 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin-left: 5px;
     width: 100%;
     letter-spacing: 2px;
-    gap: 5px;
+    gap: 8px;
+    margin: 8px 0 24px;
 }
 
 .container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
     align-items: center;
-    text-align: center;
 }
 
 #gameCanvas {
-    margin-top:10px;
-    opacity: 95%;
+    width: min(92vw, 540px);
+    max-height: 74vh;
+    aspect-ratio: 9 / 16;
     border: 1px solid #f0f0f0;
     background-color: #111;
+    opacity: 0.95;
+    border-radius: 10px;
+    touch-action: manipulation;
 }
 
 .info {
-    margin-top: 20px;
+    width: min(92vw, 540px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
 }
 
 #scoreBox {
-    position: absolute;
-    top: 280px;
-    left: 88px;
-    margin-bottom: 10px;
-    font-size:24px;
+    font-size: clamp(20px, 2.4vw, 28px);
+    font-weight: 700;
+    text-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
 }
 
-button {
-    opacity: 95%;
-    position: absolute;
-    top: 320px;
-    left: 90px;
-    padding: 10px 20px;
-    font-size: 16px;
+#restartBtn {
+    opacity: 0.95;
+    padding: 6px 14px;
+    font-size: 14px;
     cursor: pointer;
     background-color: #23cf2c;
     color: #f0f0f0;
     border: none;
+    border-radius: 8px;
+}
+
+.touch-controls {
+    width: min(92vw, 540px);
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding: 6px 0;
+    user-select: none;
+}
+
+.control-group {
+    width: 48%;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.control-btn {
+    width: 100%;
+    max-width: 110px;
+    height: 56px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    background: linear-gradient(145deg, rgba(21, 27, 54, 0.92), rgba(12, 14, 24, 0.94));
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    color: #f0f0f0;
+    font-size: 30px;
+    line-height: 1;
+    cursor: pointer;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.control-btn:active {
+    transform: translateY(1px) scale(0.97);
+    background: linear-gradient(145deg, rgba(34, 166, 64, 0.95), rgba(25, 115, 45, 0.95));
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+#messageDisplay {
+    width: min(92vw, 540px);
+    font-size: clamp(18px, 2.3vw, 24px);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px auto 0;
+    min-height: 56px;
+    text-shadow: 0 0 6px rgba(0, 0, 0, 0.75);
 }
 
 footer {
@@ -66,7 +125,10 @@ footer {
     text-align: center;
     position: fixed;
     bottom: 0;
+    left: 0;
     width: 100%;
+    margin: 0;
+    padding: 0 0 2px;
 }
 
 .paragraph {
@@ -84,8 +146,8 @@ footer {
 }
 
 h1 {
-    font-size: 32px;
-    margin-bottom: 20px;
+    font-size: clamp(26px, 4vw, 36px);
+    margin: 0;
     color: #f0f0f0;
 }
 
@@ -122,4 +184,35 @@ h1 {
 
 .lang-btn:hover {
     background-color: #ca1600;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 8px 8px 20px;
+    }
+
+    #gameCanvas {
+        aspect-ratio: 9 / 16;
+        max-height: 70vh;
+    }
+
+    .touch-controls {
+        margin-top: 12px;
+        padding: 8px 0;
+    }
+
+    .control-group {
+        gap: 10px;
+    }
+
+    .control-btn {
+        max-width: none;
+        height: 52px;
+        font-size: 28px;
+    }
+
+    #messageDisplay {
+        margin-top: 12px;
+        margin-bottom: 0;
+    }
 }
