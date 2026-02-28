@@ -1,3 +1,9 @@
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+}
+
 body {
     min-height: 100vh;
     margin: 0;
@@ -14,6 +20,9 @@ body {
 .game-page {
     max-width: 1200px;
     margin: 0 auto;
+    height: calc(100vh - 24px);
+    display: flex;
+    flex-direction: column;
 }
 
 .title {
@@ -36,18 +45,18 @@ body {
 }
 
 #gameCanvas {
-    width: min(92vw, 540px);
-    max-height: 74vh;
+    width: min(88vw, 1000px);
+    max-height: 62vh;
     aspect-ratio: 9 / 16;
     border: 1px solid #f0f0f0;
     background-color: #111;
     opacity: 0.95;
-    border-radius: 10px;
+    border-radius: 5px;
     touch-action: manipulation;
 }
 
 .info {
-    width: min(92vw, 540px);
+    width: min(88vw, 1000px);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -61,7 +70,7 @@ body {
 }
 
 #restartBtn {
-    display: none;
+    display: inline-block;
     opacity: 0.95;
     padding: 6px 14px;
     font-size: 14px;
@@ -110,7 +119,7 @@ body {
 }
 
 #messageDisplay {
-    width: min(92vw, 540px);
+    width: min(88vw, 1000px);
     font-size: clamp(18px, 2.3vw, 24px);
     text-align: center;
     display: flex;
@@ -192,17 +201,19 @@ h1 {
         padding: 8px 8px 20px;
     }
 
-    #restartBtn {
-        display: inline-block;
-    }
-
     .touch-controls {
         display: flex;
     }
 
     #gameCanvas {
-        aspect-ratio: 9 / 16;
-        max-height: 70vh;
+        width: min(92vw, 540px);
+        max-height: 60vh;
+    }
+
+    .info,
+    .touch-controls,
+    #messageDisplay {
+        width: min(92vw, 540px);
     }
 
     .touch-controls {
