@@ -1,5 +1,7 @@
 # Einstein Snake Game 🚀🌌
 
+### 🔗 Experimente o jogo agora! [Einstein Snake Game](https://cometsinthesky.github.io/einstein-snake-game/)
+
 **Apresento o Einstein Snake Game!**
 
 Um jogo retrô com uma temática espacial e científica!
@@ -37,10 +39,6 @@ Você pode controlar a nave usando as teclas direcionais ou as teclas **WASD**:
 - **Seta para baixo / S**: Mover para baixo
 - **Seta para esquerda / A**: Mover para a esquerda
 - **Seta para direita / D**: Mover para a direita
-
-## Experimente o Jogo
-
-### 🔗 Experimente o jogo aqui: [Einstein Snake Game](https://cometsinthesky.github.io/einstein-snake-game/)
 
 ## Conclusão
 
