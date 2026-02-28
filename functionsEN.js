@@ -13,6 +13,7 @@ let isPaused = true;
 let lastTime = 0;
 let updateTime = 80;
 let message = 'Tap the game to start and help Einstein capture the photons! 💡';
+let gameHasEnded = false;
 
 const limitScore = 20;
 const scoreBox = document.getElementById('scoreBox');
@@ -39,9 +40,14 @@ function randomFoodPosition() {
 }
 
 function startOnTap() {
-    if (isPaused) {
+    if (isPaused && !gameHasEnded) {
         isPaused = false;
     }
+}
+
+function endGame() {
+    gameHasEnded = true;
+    alert('The ship broke apart due to structural damage! ☠️ Your score: ' + score);
 }
 
 function applyDirection(nextDirection) {
@@ -172,12 +178,12 @@ function draw(currentTime) {
         const newHead = { x: snakeX, y: snakeY };
 
         if (!canCrossWalls && (snakeX < 0 || snakeY < 0 || snakeX >= canvas.width || snakeY >= canvas.height || collision(newHead, snake))) {
-            alert('☠️ Game Over! Your score: ' + score);
+            endGame();
             return;
         }
 
         if (collision(newHead, snake)) {
-            alert('☠️ Game Over! Your score: ' + score);
+            endGame();
             return;
         }
 
@@ -198,6 +204,7 @@ function collision(head, array) {
 }
 
 function restartGame() {
+    const shouldResumeLoop = gameHasEnded;
     snake = [{ x: box * 5, y: box * 5 }];
     direction = 'RIGHT';
     food = randomFoodPosition();
@@ -206,8 +213,13 @@ function restartGame() {
     isPaused = true;
     lastTime = 0;
     updateTime = 80;
+    gameHasEnded = false;
     message = 'Tap the game to start and help Einstein capture the photons! 💡';
     messageDisplay.innerText = message;
+
+    if (shouldResumeLoop) {
+        requestAnimationFrame(draw);
+    }
 }
 
 requestAnimationFrame(draw);
