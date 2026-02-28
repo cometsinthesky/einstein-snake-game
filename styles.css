@@ -1,7 +1,12 @@
+html {
+    height: 100%;
+    overflow: hidden;
+}
+
 body {
-    min-height: 100vh;
+    height: 100dvh;
     margin: 0;
-    padding: 10px 10px 22px;
+    padding: 8px 10px 20px;
     box-sizing: border-box;
     background-color: #000;
     color: #f0f0f0;
@@ -9,11 +14,16 @@ body {
     background-image: url("./images/starbackground.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+    overflow: hidden;
 }
 
 .game-page {
     max-width: 1200px;
     margin: 0 auto;
+    width: 100%;
+    height: calc(100dvh - 20px);
+    display: flex;
+    flex-direction: column;
 }
 
 .title {
@@ -25,24 +35,27 @@ body {
     width: 100%;
     letter-spacing: 2px;
     gap: 8px;
-    margin: 8px 0 24px;
+    margin: 4px 0 10px;
 }
 
 .container {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
     align-items: center;
+    justify-content: center;
+    flex: 1;
 }
 
 #gameCanvas {
-    width: min(92vw, 540px);
-    max-height: 74vh;
+    width: auto;
+    height: min(64vh, 960px);
+    max-width: min(92vw, 540px);
     aspect-ratio: 9 / 16;
     border: 1px solid #f0f0f0;
     background-color: #111;
     opacity: 0.95;
-    border-radius: 10px;
+    border-radius: 5px;
     touch-action: manipulation;
 }
 
@@ -61,6 +74,7 @@ body {
 }
 
 #restartBtn {
+    display: inline-block;
     opacity: 0.95;
     padding: 6px 14px;
     font-size: 14px;
@@ -72,8 +86,8 @@ body {
 }
 
 .touch-controls {
+    display: none;
     width: min(92vw, 540px);
-    display: flex;
     justify-content: space-between;
     margin-top: 10px;
     padding: 6px 0;
@@ -123,10 +137,6 @@ body {
 footer {
     font-size: 12px;
     text-align: center;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
     margin: 0;
     padding: 0 0 2px;
 }
@@ -186,14 +196,19 @@ h1 {
     background-color: #ca1600;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     body {
-        padding: 8px 8px 20px;
+        padding: 8px 8px 16px;
+    }
+
+    .touch-controls {
+        display: flex;
     }
 
     #gameCanvas {
-        aspect-ratio: 9 / 16;
-        max-height: 70vh;
+        width: min(92vw, 540px);
+        height: auto;
+        max-height: 60vh;
     }
 
     .touch-controls {
