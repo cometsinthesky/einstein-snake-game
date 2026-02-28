@@ -47,13 +47,11 @@ body {
 
 #gameCanvas {
     width: min(88vw, 860px);
-    max-height: 62vh;
-    aspect-ratio: 23 / 40;
     border: 1px solid #f0f0f0;
     background-color: #111;
     opacity: 0.95;
     border-radius: 5px;
-    touch-action: manipulation;
+    touch-action: none;
 }
 
 .info {
@@ -208,8 +206,6 @@ h1 {
 
     #gameCanvas {
         width: min(92vw, 432px);
-        max-height: 60vh;
-        aspect-ratio: 9 / 16;
     }
 
     .info,
@@ -234,7 +230,7 @@ h1 {
     }
 
     #messageDisplay {
-        margin-top: -20px;
+        margin-top: 0;
         margin-bottom: 10px;
     }
 

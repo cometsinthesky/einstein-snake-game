@@ -2,6 +2,11 @@ const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
 const box = 24;
+const swipeThreshold = 24;
+
+let columns = 23;
+let rows = 40;
+let pointerStart = null;
 
 let snake = [{ x: box * 5, y: box * 5 }];
 let direction = 'RIGHT';
@@ -21,9 +26,16 @@ const messageDisplay = document.getElementById('messageDisplay');
 const restartBtn = document.getElementById('restartBtn');
 const controlButtons = document.querySelectorAll('.control-btn');
 
+applyCanvasSettings();
+
 document.addEventListener('keydown', changeDirection);
 restartBtn.addEventListener('click', restartGame);
 canvas.addEventListener('pointerdown', startOnTap);
+document.addEventListener('pointerdown', handleSwipeStart, { passive: true });
+document.addEventListener('pointerup', handleSwipeEnd, { passive: true });
+canvas.addEventListener('touchstart', handleTouchStart, { passive: true });
+canvas.addEventListener('touchend', handleTouchEnd, { passive: true });
+window.addEventListener('resize', applyCanvasSettings);
 controlButtons.forEach((button) => {
     button.addEventListener('pointerdown', (event) => {
         event.preventDefault();
@@ -34,9 +46,110 @@ controlButtons.forEach((button) => {
 
 function randomFoodPosition() {
     return {
-        x: Math.floor(Math.random() * (canvas.width / box)) * box,
-        y: Math.floor(Math.random() * (canvas.height / box)) * box
+        x: Math.floor(Math.random() * columns) * box,
+        y: Math.floor(Math.random() * rows) * box
     };
+}
+
+function applyCanvasSettings() {
+    const mobileOrTablet = window.matchMedia('(max-width: 1024px)').matches;
+    const widthLimit = mobileOrTablet ? window.innerWidth * 0.92 : Math.min(window.innerWidth * 0.88, 860);
+    const heightLimit = mobileOrTablet ? window.innerHeight * 0.6 : window.innerHeight * 0.62;
+
+    if (mobileOrTablet) {
+        columns = 18;
+        rows = 32;
+    } else {
+        columns = 23;
+        rows = 40;
+    }
+
+    canvas.width = columns * box;
+    canvas.height = rows * box;
+
+    const cellInPixels = Math.floor(Math.min(widthLimit / columns, heightLimit / rows));
+    canvas.style.width = `${cellInPixels * columns}px`;
+    canvas.style.height = `${cellInPixels * rows}px`;
+}
+
+function isMobileOrTabletTouch(event) {
+    return window.matchMedia('(max-width: 1024px)').matches && event.pointerType === 'touch';
+}
+
+function handleSwipeStart(event) {
+    if (!isMobileOrTabletTouch(event)) {
+        return;
+    }
+
+    pointerStart = { x: event.clientX, y: event.clientY };
+}
+
+function handleSwipeEnd(event) {
+    if (!pointerStart || !isMobileOrTabletTouch(event)) {
+        return;
+    }
+
+    const deltaX = event.clientX - pointerStart.x;
+    const deltaY = event.clientY - pointerStart.y;
+
+    if (Math.abs(deltaX) < swipeThreshold && Math.abs(deltaY) < swipeThreshold) {
+        pointerStart = null;
+        return;
+    }
+
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+        applyDirection(deltaX > 0 ? 'RIGHT' : 'LEFT');
+    } else {
+        applyDirection(deltaY > 0 ? 'DOWN' : 'UP');
+    }
+
+    startOnTap();
+    pointerStart = null;
+}
+
+function handleTouchStart(event) {
+    const touch = event.changedTouches[0];
+    if (!touch) {
+        return;
+    }
+
+    pointerStart = { x: touch.clientX, y: touch.clientY };
+}
+
+function handleTouchEnd(event) {
+    const touch = event.changedTouches[0];
+    if (!pointerStart || !touch) {
+        return;
+    }
+
+    const deltaX = touch.clientX - pointerStart.x;
+    const deltaY = touch.clientY - pointerStart.y;
+
+    if (Math.abs(deltaX) >= swipeThreshold || Math.abs(deltaY) >= swipeThreshold) {
+        if (Math.abs(deltaX) > Math.abs(deltaY)) {
+            applyDirection(deltaX > 0 ? 'RIGHT' : 'LEFT');
+        } else {
+            applyDirection(deltaY > 0 ? 'DOWN' : 'UP');
+        }
+
+        startOnTap();
+    }
+
+    pointerStart = null;
+}
+
+function normalizeHeadPosition(nextX, nextY) {
+    let snakeX = nextX;
+    let snakeY = nextY;
+
+    if (canCrossWalls) {
+        if (snakeX < 0) snakeX = columns * box - box;
+        if (snakeY < 0) snakeY = rows * box - box;
+        if (snakeX >= columns * box) snakeX = 0;
+        if (snakeY >= rows * box) snakeY = 0;
+    }
+
+    return { x: snakeX, y: snakeY };
 }
 
 function startOnTap() {
@@ -158,6 +271,10 @@ function draw(currentTime) {
         if (direction === 'RIGHT') snakeX += box;
         if (direction === 'DOWN') snakeY += box;
 
+        const normalizedHead = normalizeHeadPosition(snakeX, snakeY);
+        snakeX = normalizedHead.x;
+        snakeY = normalizedHead.y;
+
         if (snakeX === food.x && snakeY === food.y) {
             score++;
             food = randomFoodPosition();
@@ -168,16 +285,9 @@ function draw(currentTime) {
             snake.pop();
         }
 
-        if (canCrossWalls) {
-            if (snakeX < 0) snakeX = canvas.width - box;
-            if (snakeY < 0) snakeY = canvas.height - box;
-            if (snakeX >= canvas.width) snakeX = 0;
-            if (snakeY >= canvas.height) snakeY = 0;
-        }
-
         const newHead = { x: snakeX, y: snakeY };
 
-        if (!canCrossWalls && (snakeX < 0 || snakeY < 0 || snakeX >= canvas.width || snakeY >= canvas.height || collision(newHead, snake))) {
+        if (!canCrossWalls && (snakeX < 0 || snakeY < 0 || snakeX >= columns * box || snakeY >= rows * box || collision(newHead, snake))) {
             endGame();
             return;
         }
