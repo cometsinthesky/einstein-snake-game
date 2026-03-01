@@ -52,13 +52,17 @@ function randomFoodPosition() {
 }
 
 function applyCanvasSettings() {
-    const mobileOrTablet = window.matchMedia('(max-width: 1024px)').matches;
-    const targetWidthRatio = mobileOrTablet ? 0.96 : 0.70;
-    const targetHeightRatio = mobileOrTablet ? 0.65 : 0.50;
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    const isTablet = window.matchMedia('(min-width: 769px) and (max-width: 1024px)').matches;
+    const targetWidthRatio = isMobile ? 0.96 : 0.70;
+    const targetHeightRatio = 0.60;
 
-    if (mobileOrTablet) {
+    if (isMobile) {
         columns = 18;
         rows = 32;
+    } else if (isTablet) {
+        columns = 21;
+        rows = 36;
     } else {
         columns = 23;
         rows = 40;
