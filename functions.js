@@ -233,7 +233,7 @@ function startOnTap() {
 
 function endGame() {
     gameHasEnded = true;
-    alert('A nave quebrou por danos estrutuais! ☠️ Seu placar: ' + score);
+    alert('A nave quebrou por danos estruturais! ☠️ Seu placar: ' + score);
 }
 
 function applyDirection(nextDirection) {
