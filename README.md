@@ -1,4 +1,4 @@
-# Einstein Snake Game 🚀🌌
+# Einstein Snake Game <img src="https://raw.githubusercontent.com/cometsinthesky/einstein-snake-game/refs/heads/main/images/einstein-logo.png" alt="Biodiversity Battle OG Image" width="100" height="100" />
 
 ## [🔗 Experimente o jogo agora! Jogar Einstein Snake Game!](https://cometsinthesky.github.io/einstein-snake-game/)
 
