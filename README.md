@@ -2,6 +2,10 @@
 
 ## [🔗 Experimente o jogo agora! Jogar Einstein Snake Game!](https://cometsinthesky.github.io/einstein-snake-game/)
 
+<p align="center">
+  <img src="https://github.com/cometsinthesky/einstein-snake-game/blob/main/images/game-screenshot.jpg" width="60%" alt="einstein-snake-release-v2">
+</p>
+
 #### Um jogo retrô com temática espacial e científica: controle a nave do Einstein e capture fótons 🟨 para marcar pontos!
 
 ## Visão Geral
