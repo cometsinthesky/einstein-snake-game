@@ -4,6 +4,11 @@ body {
     overflow: hidden;
 }
 
+:root{
+    /* Set by JS (applyCanvasSettings). Fallback keeps layout stable before JS runs. */
+    --game-width: 1000px;
+}
+
 body {
     min-height: 100vh;
     margin: 0;
@@ -53,7 +58,7 @@ body {
 }
 
 #gameCanvas {
-    width: calc(100vw - 20px);
+    display: block;
     border: 1px solid #f0f0f0;
     background-color: #111;
     opacity: 0.95;
@@ -62,7 +67,8 @@ body {
 }
 
 .info {
-    width: calc(100vw - 20px);
+    width: 100%;
+    max-width: var(--game-width);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -89,7 +95,8 @@ body {
 
 .touch-controls {
     display: none;
-    width: min(92vw, 540px);
+    width: 100%;
+    max-width: var(--game-width);
     justify-content: space-between;
     margin-top: 10px;
     padding: 6px 0;
@@ -125,8 +132,10 @@ body {
 }
 
 #messageDisplay {
-    width: calc(100vw - 20px);
+    width: 100%;
+    max-width: var(--game-width);
     font-size: clamp(18px, 2.3vw, 24px);
+    font-family: Roboto;
     text-align: center;
     display: flex;
     align-items: center;
@@ -137,7 +146,7 @@ body {
 }
 
 footer {
-    font-size: 12px;
+    font-size: 11px;
     text-align: center;
     position: fixed;
     bottom: 0;
@@ -189,8 +198,8 @@ h1 {
     background-image: url('images/pt.png');
     background-size: 110%;
     background-position: center;
-    padding: 16px 25px;
-    font-size: 30px;
+    padding: 14px 6px;
+    font-size: 28px;
     background-color: #000000;
     color: #ffffff;
     font-family: "Orbitron", sans-serif;
@@ -216,6 +225,16 @@ h1 {
     background-color: #ca1600;
 }
 
+
+/* Desktop (>=1025px): fixed canvas 1000x750 (4:3) and hide only touch controls (keep restart) */
+.is-desktop .touch-controls {
+    display: none !important;
+}
+
+.is-desktop .info {
+    justify-content: center;
+}
+
 @media (max-width: 1024px) {
     body {
         padding: 8px 8px 20px;
@@ -228,7 +247,7 @@ h1 {
     .info,
     .touch-controls,
     #messageDisplay {
-        width: calc(100vw - 20px);
+    width: var(--game-width);
     }
 
     .touch-controls {

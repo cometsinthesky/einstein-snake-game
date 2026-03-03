@@ -10,7 +10,7 @@ let pointerStart = null;
 
 let snake = [{ x: box * 5, y: box * 5 }];
 let direction = 'RIGHT';
-let food = randomFoodPosition();
+let food = { x: 0, y: 0 }; // set correctly after layout
 let score = 0;
 let canCrossWalls = false;
 let isPaused = true;
@@ -27,6 +27,7 @@ const restartBtn = document.getElementById('restartBtn');
 const controlButtons = document.querySelectorAll('.control-btn');
 
 applyCanvasSettings();
+ensureFoodVisible();
 
 document.addEventListener('keydown', changeDirection);
 restartBtn.addEventListener('click', restartGame);
@@ -51,28 +52,74 @@ function randomFoodPosition() {
     };
 }
 
+function isOnSnake(pos) {
+    return snake.some((segment) => segment.x === pos.x && segment.y === pos.y);
+}
+
+function ensureFoodVisible() {
+    // Ensures food always spawns inside the canvas and not on the snake
+    const maxTries = 200;
+    let tries = 0;
+
+    const outOfBounds = (food.x < 0 || food.y < 0 || food.x >= canvas.width || food.y >= canvas.height);
+    if (outOfBounds) {
+        food = { x: 0, y: 0 };
+    }
+
+    while ((food.x === 0 && food.y === 0) || outOfBounds || isOnSnake(food)) {
+        food = randomFoodPosition();
+        tries++;
+        if (tries >= maxTries) {
+            const a = { x: 0, y: 0 };
+            const b = { x: box, y: box };
+            food = !isOnSnake(a) ? a : b;
+            break;
+        }
+    }
+}
+
+
 function applyCanvasSettings() {
     const isMobile = window.matchMedia('(max-width: 768px)').matches;
     const isTablet = window.matchMedia('(min-width: 769px) and (max-width: 1024px)').matches;
-    const targetWidthRatio = isMobile ? 0.96 : 0.70;
-    const targetHeightRatio = 0.60;
+    const isDesktop = !isMobile && !isTablet;
 
-    if (isMobile) {
-        columns = 18;
-        rows = 32;
+    // ✅ Game grid per device (keeps snake/food squares undistorted)
+    if (isDesktop) {
+        columns = 35;
+        rows = 19;
     } else if (isTablet) {
-        columns = 21;
-        rows = 36;
+        columns = 25;
+        rows = 33;
     } else {
-        columns = 23;
-        rows = 40;
+        columns = 20;
+        rows = 30;
     }
 
-    const widthLimit = window.innerWidth * targetWidthRatio;
-    const heightLimit = window.innerHeight * targetHeightRatio;
-
+    // Internal resolution (game units)
     canvas.width = columns * box;
     canvas.height = rows * box;
+
+    // Display size (CSS pixels) per breakpoint (percent of viewport)
+    let displayW;
+    let displayH;
+
+    if (isDesktop) {
+        // Desktop: fixed 1000 x 750 (4:3) and NO buttons
+        displayW = 80;
+        displayH = 70;
+    } else if (isTablet) {
+        // Tablet: fixed 800 x 600 (4:3) with buttons
+        displayW = 90;
+        displayH = 75;
+    } else {
+        // Mobile: 100% width x up to 70% height (keep 4:3 without distortion)
+        displayW = 96;
+        displayH = 65;
+    }
+
+    const widthLimit = window.innerWidth * (displayW / 100);
+    const heightLimit = window.innerHeight * (displayH / 100);
 
     const gridWidth = columns * box;
     const gridHeight = rows * box;
@@ -80,6 +127,20 @@ function applyCanvasSettings() {
 
     canvas.style.width = `${gridWidth * scale}px`;
     canvas.style.height = `${gridHeight * scale}px`;
+
+
+    // Keep UI (title/info/buttons) aligned to the canvas width
+    const uiW = Math.round(gridWidth * scale);
+    document.documentElement.style.setProperty('--game-width', `${uiW}px`);
+
+    // If resize changed the grid and snake is out of bounds, recenter it
+    const head = snake[0];
+    if (!head || head.x < 0 || head.y < 0 || head.x >= canvas.width || head.y >= canvas.height) {
+        snake = [{ x: Math.floor(columns / 2) * box, y: Math.floor(rows / 2) * box }];
+        direction = 'RIGHT';
+    }
+
+    ensureFoodVisible();
 }
 
 function isMobileOrTabletTouch(event) {
@@ -217,10 +278,10 @@ function draw(currentTime) {
     canvas.style.border = score >= limitScore ? '1px solid #0074FF' : '1px solid #FF1B00';
 
     if (isPaused) {
-        const message1 = '◈ Tap the screen to start';
-        const message2 = '◈ Arrows / W-A-S-D / touch buttons to move';
+        const message1 = '◈ Tap the screen / space bar to start';
+        const message2 = '◈ Swipe / Arrows / W-A-S-D / touch buttons to move';
         const message3 = '◈ Space bar pauses the game';
-        ctx.fillStyle = '#FF1B00';
+        ctx.fillStyle = '#ffffff';
         ctx.font = '16px Roboto';
 
         const textWidth1 = ctx.measureText(message1).width;
@@ -328,6 +389,7 @@ function restartGame() {
     snake = [{ x: box * 5, y: box * 5 }];
     direction = 'RIGHT';
     food = randomFoodPosition();
+    ensureFoodVisible();
     score = 0;
     canCrossWalls = false;
     isPaused = true;
