@@ -2,7 +2,7 @@
 
 ## [🔗 Experimente o jogo agora! Jogar Einstein Snake Game!](https://cometsinthesky.github.io/einstein-snake-game/)
 
-### Um jogo retrô com temática espacial e científica: controle a nave do Einstein e capture fótons 🟨 para marcar pontos!
+#### Um jogo retrô com temática espacial e científica: controle a nave do Einstein e capture fótons 🟨 para marcar pontos!
 
 ## Visão Geral
 O **Einstein Snake Game** é um jogo/arcade interativo, ideal para sala de aula e momentos de descontração, com estética clássica e uma narrativa científica leve.  
