@@ -1,8 +1,8 @@
-# Einstein Snake Game 🚀🌌
+# Einstein Snake Game <img src="https://raw.githubusercontent.com/cometsinthesky/einstein-snake-game/refs/heads/main/images/einstein-logo.png" alt="Biodiversity Battle OG Image" width="100" height="100" />
 
 ## [🔗 Experimente o jogo agora! Jogar Einstein Snake Game!](https://cometsinthesky.github.io/einstein-snake-game/)
 
-### Um jogo retrô com temática espacial e científica: controle a nave do Einstein e capture fótons 🟨 para marcar pontos!
+#### Um jogo retrô com temática espacial e científica: controle a nave do Einstein e capture fótons 🟨 para marcar pontos!
 
 ## Visão Geral
 O **Einstein Snake Game** é um jogo/arcade interativo, ideal para sala de aula e momentos de descontração, com estética clássica e uma narrativa científica leve.  
@@ -105,7 +105,7 @@ Funciona bem como gancho rápido para conversar sobre:
 4. (Versão 2.0.0) No celular ou tablet: use **swipe** ou **botões** para controlar
 
 ## Créditos e Contato
-Einstein Snake Game foi criado por **Lucas Ferreira (UnB/PPGEduC)** como um projeto educacional no âmbito do Mestrado Nacional Profissional em Ensino de Física (MNPEF) Polo 01 UnB em julho de 2024. Atualizado para a [Versão 2.0.0](linkv2.0) responsiva em março de 2026.
+Einstein Snake Game foi criado por **Lucas Ferreira (UnB/PPGEduC)** como um projeto educacional no âmbito do Mestrado Nacional Profissional em Ensino de Física (MNPEF) Polo 01 UnB em julho de 2024. Atualizado para a [Versão 2.0.0]([linkv2.0](https://github.com/cometsinthesky/einstein-snake-game/releases/tag/v2.0.0)) responsiva em março de 2026.
 
 Se você usar em sala, adoraríamos saber como foi. Feedback e sugestões são muito bem-vindos!
 
