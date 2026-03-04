@@ -38,16 +38,16 @@ body {
     align-items: center;
     text-align: center;
     width: 100%;
-    letter-spacing: 2px;
+    letter-spacing: 4px;
     gap: 8px;
-    margin: 8px 0 12px;
+    margin: -2px 0 6px;
 }
 
 .title-row {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
+    gap: 0px;
 }
 
 .container {
@@ -140,7 +140,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 10px;
+    margin: 0 auto 0px;
+    margin-top: 0;
+    margin-bottom: 0px;
     min-height: 56px;
     text-shadow: 0 0 6px rgba(0, 0, 0, 0.75);
 }
