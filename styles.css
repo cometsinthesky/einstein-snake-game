@@ -134,7 +134,7 @@ body {
 #messageDisplay {
     width: 100%;
     max-width: var(--game-width);
-    font-size: clamp(18px, 2.3vw, 24px);
+    font-size: clamp(16px, 2.3vw, 18px);
     font-family: Roboto;
     text-align: center;
     display: flex;
@@ -253,7 +253,7 @@ h1 {
     }
 
     .touch-controls {
-        margin-top: 0;
+        margin-top: -10px;
         padding: 8px 0;
     }
 
@@ -269,7 +269,7 @@ h1 {
 
     #messageDisplay {
         margin-top: 0;
-        margin-bottom: 10px;
+        margin-bottom: 2px;
     }
 
     .info {
